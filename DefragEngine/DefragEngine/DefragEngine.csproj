@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="CategoryCollection.cs" />
     <Compile Include="DefragEngineBaseUnit.cs" />
+    <Compile Include="DefragEngineUtils.cs" />
     <Compile Include="ToolBundle.cs" />
     <Compile Include="ToolCategory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
