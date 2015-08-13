@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DefragEngine
 {
-    public class CategotyCollection : Dictionary<Guid, ToolCategory>
+    public class CategoryCollection : Dictionary<Guid, ToolCategory>
     {
     }
 }

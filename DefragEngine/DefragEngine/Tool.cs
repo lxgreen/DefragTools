@@ -1,10 +1,7 @@
-﻿using System;
-
-namespace DefragEngine
+﻿namespace DefragEngine
 {
     public class Tool : DefragEngineBaseUnit
     {
-
         public bool CanUpdate { get; set; }
 
         public string UpdateURL { get; set; }

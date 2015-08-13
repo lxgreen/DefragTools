@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategotyCollection.cs" />
+    <Compile Include="CategoryCollection.cs" />
     <Compile Include="DefragEngineBaseUnit.cs" />
     <Compile Include="ToolBundle.cs" />
     <Compile Include="ToolCategory.cs" />

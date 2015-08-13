@@ -13,7 +13,7 @@
   <Class Name="DefragEngine.ToolCategory">
     <Position X="3.25" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAgAAAAAAAAAAQAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>ToolCategory.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -21,7 +21,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DefragEngine.ToolCollection">
-    <Position X="2.25" Y="6.25" Width="1.5" />
+    <Position X="3" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ToolCollection.cs</FileName>
@@ -44,11 +44,11 @@
       <FileName>DefragEngineBaseUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DefragEngine.CategotyCollection" Collapsed="true">
-    <Position X="5.25" Y="5.25" Width="2" />
+  <Class Name="DefragEngine.CategoryCollection" Collapsed="true">
+    <Position X="5.25" Y="4.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CategotyCollection.cs</FileName>
+      <FileName>CategoryCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace DefragEngine
+﻿namespace DefragEngine
 {
     public class ToolBundle : DefragEngineBaseUnit
     {
-        public CategotyCollection Categories { get; set; }
+        public CategoryCollection Categories { get; set; }
     }
 }
