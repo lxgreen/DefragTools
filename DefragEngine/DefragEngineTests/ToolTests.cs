@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using DefragEngine;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefragEngineTests
 {
@@ -6,8 +8,12 @@ namespace DefragEngineTests
     public class ToolTests
     {
         [TestMethod]
-        public void InstanceTest()
+        public void ToolInstanceTest()
         {
+            Tool tool = new Tool("ProcDump");
+            Assert.IsNotNull(tool);
+            Assert.AreNotEqual(tool.ID, Guid.Empty);
+            Assert.AreEqual(tool.Name, "ProcDump");
         }
     }
 }

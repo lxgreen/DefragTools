@@ -13,5 +13,9 @@
         public bool IsPortable { get; set; }
 
         public ToolCategory Category { get; set; }
+
+        public Tool(string name) : base(name)
+        {
+        }
     }
 }

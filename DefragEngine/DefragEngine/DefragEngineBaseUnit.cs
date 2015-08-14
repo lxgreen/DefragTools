@@ -10,5 +10,11 @@ namespace DefragEngine
         public Guid ID { get; set; }
 
         public string Version { get; set; }
+
+        public DefragEngineBaseUnit(string name)
+        {
+            Name = name;
+            ID = Guid.NewGuid();
+        }
     }
 }

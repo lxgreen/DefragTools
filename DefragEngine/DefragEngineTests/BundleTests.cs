@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using DefragEngine;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefragEngineTests
 {
@@ -54,11 +56,14 @@ namespace DefragEngineTests
         //
 
         [TestMethod]
-        public void InstanceTest()
+        public void BundleInstanceTest()
         {
-            //
-            // TODO: Add test logic here
-            //
+            ToolBundle bundle = new ToolBundle("TestBundle");
+            Assert.IsNotNull(bundle);
+            Assert.AreNotEqual(bundle.ID, Guid.Empty);
+            Assert.AreEqual(bundle.Name, "TestBundle");
+            Assert.IsNotNull(bundle.Categories);
+            Assert.AreEqual(bundle.Categories.Count, 0);
         }
     }
 }
