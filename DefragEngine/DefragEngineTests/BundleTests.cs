@@ -65,5 +65,19 @@ namespace DefragEngineTests
             Assert.IsNotNull(bundle.Categories);
             Assert.AreEqual(bundle.Categories.Count, 0);
         }
+
+        [TestMethod]
+        public void BundleCategoriesTest()
+        {
+            ToolBundle bundle = new ToolBundle("TestBundle");
+            Assert.AreEqual(bundle.Categories.Count, 0);
+            var testCategory = new ToolCategory("Test");
+            bundle.Categories.Add(testCategory);
+            Assert.AreEqual(bundle.Categories.Count, 1);
+            var categoryToAdd = new ToolCategory("Test2");
+            bundle.Categories.Add(categoryToAdd);
+            Assert.AreEqual(bundle.Categories.Count, 2);
+        }
+
     }
 }

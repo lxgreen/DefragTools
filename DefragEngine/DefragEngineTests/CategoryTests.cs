@@ -65,5 +65,18 @@ namespace DefragEngineTests
             Assert.IsNotNull(category.Tools);
             Assert.AreEqual(category.Tools.Count, 0);
         }
+
+        [TestMethod]
+        public void CategoryToolsTest()
+        {
+            ToolCategory category = new ToolCategory("SysInternals");
+            Assert.AreEqual(category.Tools.Count, 0);
+            Tool procDump = new Tool("ProcDump");
+            Tool procExp = new Tool("ProcExp");
+            category.Tools.Add(procDump);
+            Assert.AreEqual(category.Tools.Count, 1);
+            category.Tools.Add(procExp);            
+            Assert.AreEqual(category.Tools.Count, 2);
+        }
     }
 }
