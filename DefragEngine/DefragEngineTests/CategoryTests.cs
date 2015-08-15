@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DefragEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -67,7 +68,7 @@ namespace DefragEngineTests
         }
 
         [TestMethod]
-        public void CategoryToolsTest()
+        public void CategoryToolsAddTest()
         {
             ToolCategory category = new ToolCategory("SysInternals");
             Assert.AreEqual(category.Tools.Count, 0);
@@ -77,6 +78,54 @@ namespace DefragEngineTests
             Assert.AreEqual(category.Tools.Count, 1);
             category.Tools.Add(procExp);            
             Assert.AreEqual(category.Tools.Count, 2);
+        }
+
+        [TestMethod]
+        public void CategoryToolsAddRangeTest()
+        {
+            Tool procDump = new Tool("ProcDump");
+            Tool procExp = new Tool("ProcExp");
+            ToolCategory category = new ToolCategory("SysInternals");
+            Assert.AreEqual(category.Tools.Count, 0);
+            category.Tools.Add(procDump, procExp);           
+            Assert.AreEqual(category.Tools.Count, 2);
+        }
+
+        [TestMethod]
+        public void CategoryToolsRemoveTest()
+        {
+            Tool procDump = new Tool("ProcDump");
+            Tool procExp = new Tool("ProcExp");
+            ToolCategory category = new ToolCategory("SysInternals");           
+            category.Tools.Add(procDump, procExp);
+
+            var isRemoved = category.Tools.Remove(procDump);
+            Assert.AreEqual(isRemoved, true);
+            Assert.AreEqual(category.Tools.Count, 1);
+
+            isRemoved = category.Tools.Remove(procDump);
+            Assert.AreEqual(isRemoved, false);
+            Assert.AreEqual(category.Tools.Count, 1);
+        }
+
+        [TestMethod]
+        public void CategoryToolsIndexerTest()
+        {
+            Tool procDump = new Tool("ProcDump");
+            Tool procExp = new Tool("ProcExp");
+            ToolCategory category = new ToolCategory("SysInternals");
+            category.Tools.Add(procDump, procExp);
+
+            var toolByProcDumpIndex = category.Tools["ProcDump"];
+            Assert.AreEqual(toolByProcDumpIndex.FirstOrDefault(), procDump);
+
+            var isRemoved = category.Tools.Remove(procDump);
+            Assert.AreEqual(isRemoved, true);
+            Assert.AreEqual(category.Tools.Count, 1);
+
+            toolByProcDumpIndex = category.Tools["ProcDump"];
+            Assert.AreEqual(toolByProcDumpIndex.Count(), 0);
+
         }
     }
 }

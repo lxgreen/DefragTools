@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using DefragEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -67,7 +69,7 @@ namespace DefragEngineTests
         }
 
         [TestMethod]
-        public void BundleCategoriesTest()
+        public void BundleCategoriesAddTest()
         {
             ToolBundle bundle = new ToolBundle("TestBundle");
             Assert.AreEqual(bundle.Categories.Count, 0);
@@ -77,6 +79,55 @@ namespace DefragEngineTests
             var categoryToAdd = new ToolCategory("Test2");
             bundle.Categories.Add(categoryToAdd);
             Assert.AreEqual(bundle.Categories.Count, 2);
+        }
+
+        [TestMethod]
+        public void BundleCategoriesAddRangeTest()
+        {
+            var testCategory = new ToolCategory("Test");
+            var categoryToAdd = new ToolCategory("Test2");
+            ToolBundle bundle = new ToolBundle("TestBundle");
+            Assert.AreEqual(bundle.Categories.Count, 0);            
+            bundle.Categories.Add(categoryToAdd, testCategory);
+            Assert.AreEqual(bundle.Categories.Count, 2);
+        }
+
+        [TestMethod]
+        public void BundleCategoriesRemoveTest()
+        {
+            var testCategory = new ToolCategory("Test");
+            var categoryToAdd = new ToolCategory("Test2");
+            ToolBundle bundle = new ToolBundle("TestBundle");           
+            bundle.Categories.Add(categoryToAdd, testCategory);
+            Assert.AreEqual(bundle.Categories.Count, 2);
+
+            var isRemoved = bundle.Categories.Remove(testCategory);
+            Assert.AreEqual(isRemoved, true);
+            Assert.AreEqual(bundle.Categories.Count, 1);
+
+            var isRemovedAgain = bundle.Categories.Remove(testCategory);
+            Assert.AreEqual(isRemovedAgain, false);
+            Assert.AreEqual(bundle.Categories.Count, 1);
+        }
+
+        [TestMethod]
+        public void BundleCategoriesIndexerTest()
+        {
+            var testCategory = new ToolCategory("Test");
+            var categoryToAdd = new ToolCategory("Test2");
+            ToolBundle bundle = new ToolBundle("TestBundle");
+            bundle.Categories.Add(categoryToAdd, testCategory);
+            Assert.AreEqual(bundle.Categories.Count, 2);
+
+            var categoryByTestIndex = bundle.Categories["Test"];            
+            Assert.AreEqual(categoryByTestIndex.FirstOrDefault(), testCategory);
+
+            var isRemoved = bundle.Categories.Remove(testCategory);
+            Assert.AreEqual(isRemoved, true);
+            Assert.AreEqual(bundle.Categories.Count, 1);
+
+            categoryByTestIndex = bundle.Categories["Test"];
+            Assert.AreEqual(categoryByTestIndex.Count(), 0);
         }
 
     }
