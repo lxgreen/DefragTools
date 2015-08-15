@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DefragEngine
 {
@@ -10,6 +10,7 @@ namespace DefragEngine
         {
             Add(category.ID, category);
         }
+
         public bool Remove(ToolCategory tool)
         {
             return Remove(tool.ID);

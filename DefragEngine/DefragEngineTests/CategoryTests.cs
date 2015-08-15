@@ -76,7 +76,7 @@ namespace DefragEngineTests
             Tool procExp = new Tool("ProcExp");
             category.Tools.Add(procDump);
             Assert.AreEqual(category.Tools.Count, 1);
-            category.Tools.Add(procExp);            
+            category.Tools.Add(procExp);
             Assert.AreEqual(category.Tools.Count, 2);
         }
 
@@ -87,7 +87,7 @@ namespace DefragEngineTests
             Tool procExp = new Tool("ProcExp");
             ToolCategory category = new ToolCategory("SysInternals");
             Assert.AreEqual(category.Tools.Count, 0);
-            category.Tools.Add(procDump, procExp);           
+            category.Tools.Add(procDump, procExp);
             Assert.AreEqual(category.Tools.Count, 2);
         }
 
@@ -96,7 +96,7 @@ namespace DefragEngineTests
         {
             Tool procDump = new Tool("ProcDump");
             Tool procExp = new Tool("ProcExp");
-            ToolCategory category = new ToolCategory("SysInternals");           
+            ToolCategory category = new ToolCategory("SysInternals");
             category.Tools.Add(procDump, procExp);
 
             var isRemoved = category.Tools.Remove(procDump);
@@ -125,7 +125,6 @@ namespace DefragEngineTests
 
             toolByProcDumpIndex = category.Tools["ProcDump"];
             Assert.AreEqual(toolByProcDumpIndex.Count(), 0);
-
         }
     }
 }

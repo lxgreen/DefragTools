@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using Shell32;
 
@@ -29,7 +28,7 @@ namespace DefragEngine
             if (folderItem != null)
             {
                 properties = new Dictionary<string, string>();
-                for (int i = 0; i < EXTENDED_HEADER_COUNT+1; i++)
+                for (int i = 0; i < EXTENDED_HEADER_COUNT + 1; i++)
                 {
                     string property = directory.GetDetailsOf(folderItem, i);
                     if (!string.IsNullOrEmpty(property))
@@ -61,7 +60,7 @@ namespace DefragEngine
         public static Dictionary<int, string> GetExtendedPropertyHeaders(string path)
         {
             Dictionary<int, string> headers = null;
-            
+
             var dirName = Path.GetDirectoryName(path);
             if (!Directory.Exists(dirName))
             {
@@ -75,7 +74,5 @@ namespace DefragEngine
 
             return headers;
         }
-
     }
-
 }

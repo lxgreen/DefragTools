@@ -1,10 +1,6 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Diagnostics;
 using DefragEngine;
-using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DefragEngineTests
 {
@@ -39,7 +35,6 @@ namespace DefragEngineTests
             }
         }
 
-        #region Additional test attributes
         //
         // You can use the following additional attributes as you write your tests:
         //
@@ -51,7 +46,7 @@ namespace DefragEngineTests
         // [ClassCleanup()]
         // public static void MyClassCleanup() { }
         //
-        // Use TestInitialize to run code before running each test 
+        // Use TestInitialize to run code before running each test
         // [TestInitialize()]
         // public void MyTestInitialize() { }
         //
@@ -59,7 +54,6 @@ namespace DefragEngineTests
         // [TestCleanup()]
         // public void MyTestCleanup() { }
         //
-        #endregion
 
         [TestMethod]
         public void GetExtendedPropertiesTest()

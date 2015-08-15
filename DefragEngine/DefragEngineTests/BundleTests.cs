@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using DefragEngine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -87,7 +86,7 @@ namespace DefragEngineTests
             var testCategory = new ToolCategory("Test");
             var categoryToAdd = new ToolCategory("Test2");
             ToolBundle bundle = new ToolBundle("TestBundle");
-            Assert.AreEqual(bundle.Categories.Count, 0);            
+            Assert.AreEqual(bundle.Categories.Count, 0);
             bundle.Categories.Add(categoryToAdd, testCategory);
             Assert.AreEqual(bundle.Categories.Count, 2);
         }
@@ -97,7 +96,7 @@ namespace DefragEngineTests
         {
             var testCategory = new ToolCategory("Test");
             var categoryToAdd = new ToolCategory("Test2");
-            ToolBundle bundle = new ToolBundle("TestBundle");           
+            ToolBundle bundle = new ToolBundle("TestBundle");
             bundle.Categories.Add(categoryToAdd, testCategory);
             Assert.AreEqual(bundle.Categories.Count, 2);
 
@@ -119,7 +118,7 @@ namespace DefragEngineTests
             bundle.Categories.Add(categoryToAdd, testCategory);
             Assert.AreEqual(bundle.Categories.Count, 2);
 
-            var categoryByTestIndex = bundle.Categories["Test"];            
+            var categoryByTestIndex = bundle.Categories["Test"];
             Assert.AreEqual(categoryByTestIndex.FirstOrDefault(), testCategory);
 
             var isRemoved = bundle.Categories.Remove(testCategory);
@@ -129,6 +128,5 @@ namespace DefragEngineTests
             categoryByTestIndex = bundle.Categories["Test"];
             Assert.AreEqual(categoryByTestIndex.Count(), 0);
         }
-
     }
 }
