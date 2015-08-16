@@ -128,5 +128,56 @@ namespace DefragEngineTests
             categoryByTestIndex = bundle.Categories["Test"];
             Assert.AreEqual(categoryByTestIndex.Count(), 0);
         }
+
+        [TestMethod]
+        public void BundleSerializationTest()
+        {
+            ToolBundle bundle = new ToolBundle("SysInternals")
+            {
+                Version = "0.0.0.1",
+                Description = "SysInternals Bundle"
+            };
+
+            var debugging = new ToolCategory("Debugging")
+            {
+                Version = "0.0.0.1",
+                Description = "Debugging Tools from SysInternals.Com"
+            };
+
+            var monitoring = new ToolCategory("Monitoring")
+            {
+                Version = "0.0.0.2",
+                Description = "Monitoring Tools from SysInternals.Com"
+            };
+
+            Tool procDump = new Tool("ProcDump")
+            {
+                Version = "7.0.0.1",
+                Description = "Automatic Dump capture",
+                IsPortable = true
+            };
+
+            Tool procExp = new Tool("ProcExp")
+            {
+                Version = "7.0.0.3",
+                Description = "Process Explorer -- TaskMgr on steroids!",
+                UpdateURL = "http://sysinternals.com",
+                CanUpdate = true
+            };
+
+            procExp.Properties.Add("Company", "Microsoft");
+            procExp.Properties.Add("Published", "2015");
+
+            debugging.Tools.Add(procDump);
+            monitoring.Tools.Add(procExp);
+
+            bundle.Categories.Add(debugging);
+            bundle.Categories.Add(monitoring);
+            Assert.AreEqual(bundle.Categories.Count, 2);
+
+            var xml = bundle.ToXML();
+
+            Assert.IsNotNull(xml);
+        }
     }
 }
