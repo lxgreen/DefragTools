@@ -37,13 +37,13 @@ namespace DefragEngine
                     new XAttribute("Name", Name),
                     new XAttribute("Version", Version),
                         new XElement("Description", Description),
-                        new XElement("Categories", from category in Categories.Values select
+                        new XElement("Categories", from category in Categories select
                             new XElement("Category",
                             new XAttribute("ID", category.ID),
                             new XAttribute("Name", category.Name),
                             new XAttribute("Version", category.Version),
                              new XElement("Description", category.Description),
-                             new XElement("Tools", from tool in category.Tools.Values select
+                             new XElement("Tools", from tool in category.Tools select
                                  new XElement("Tool",
                                      new XAttribute("ID", tool.ID),
                                      new XAttribute("Name", tool.Name),

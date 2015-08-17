@@ -4,31 +4,20 @@ using System.Linq;
 
 namespace DefragEngine
 {
-    public class CategoryCollection : Dictionary<Guid, ToolCategory>
+    public class CategoryCollection : List<ToolCategory>
     {
-        public void Add(ToolCategory category)
-        {
-            Add(category.ID, category);
-        }
-
-        public bool Remove(ToolCategory tool)
-        {
-            return Remove(tool.ID);
-        }
+        
 
         public void Add(params ToolCategory[] tools)
         {
-            foreach (var tool in tools)
-            {
-                Add(tool);
-            }
+            AddRange(tools);
         }
 
         public IEnumerable<ToolCategory> this[string name]
         {
             get
             {
-                return from category in this.Values
+                return from category in this
                        where category.Name == name
                        select category;
             }

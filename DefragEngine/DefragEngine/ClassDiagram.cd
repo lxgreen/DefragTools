@@ -1,18 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="DefragEngine.Tool">
-    <Position X="3.5" Y="3.5" Width="1.5" />
+    <Position X="3.75" Y="3.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AEgAAAAAAAAAAAAAAAAAACAAAAAAAAAgAABAAAACCAA=</HashCode>
+      <HashCode>AEgAAAAAAAAAEAAAAAAAACAAAAAAAAAgAABAAAACAAA=</HashCode>
       <FileName>Tool.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Category" />
       <Property Name="Properties" />
     </ShowAsAssociation>
   </Class>
   <Class Name="DefragEngine.ToolCategory">
-    <Position X="6.25" Y="3.5" Width="1.5" />
+    <Position X="6.25" Y="3.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>ToolCategory.cs</FileName>
@@ -22,16 +21,16 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DefragEngine.ToolCollection">
-    <Position X="7" Y="6.5" Width="1.75" />
+    <Position X="6.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAACAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ToolCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="DefragEngine.ToolBundle">
-    <Position X="8.5" Y="3.5" Width="1.5" />
+    <Position X="9.25" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAgAAAAAAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAAAAQ=</HashCode>
       <FileName>ToolBundle.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -39,20 +38,20 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="DefragEngine.DefragEngineBaseUnit">
-    <Position X="6" Y="0.5" Width="2" />
+    <Position X="6" Y="0.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAggAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>DefragEngineBaseUnit.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DefragEngine.CategoryCollection" Collapsed="true">
-    <Position X="9.25" Y="2" Width="2" />
+  <Class Name="DefragEngine.CategoryCollection">
+    <Position X="12.5" Y="4.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAAAAACAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CategoryCollection.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DefragEngine.PropertyCollection" Collapsed="true">
+  <Class Name="DefragEngine.PropertyCollection">
     <Position X="0.75" Y="4.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

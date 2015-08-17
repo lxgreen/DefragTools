@@ -182,7 +182,7 @@ namespace DefragEngineTests
             Assert.AreEqual(serializedBundle.Version, deserializedBundle.Version);
             Assert.AreEqual(serializedBundle.Description, deserializedBundle.Description);
 
-            foreach (var category in serializedBundle.Categories.Values)
+            foreach (var category in serializedBundle.Categories)
             {
                 var deserializedCategory = deserializedBundle.Categories[category.Name].First();
 
@@ -191,7 +191,7 @@ namespace DefragEngineTests
                 Assert.AreEqual(deserializedCategory.Version,       category.Version);
                 Assert.AreEqual(deserializedCategory.Description,   category.Description);
 
-                foreach (var tool in category.Tools.Values)
+                foreach (var tool in category.Tools)
                 {
                     var deserializedTool = deserializedCategory.Tools[tool.Name].First();
 
