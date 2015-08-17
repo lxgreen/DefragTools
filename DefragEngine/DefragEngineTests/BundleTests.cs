@@ -133,7 +133,7 @@ namespace DefragEngineTests
         [TestMethod]
         public void BundleSerializationTest()
         {
-            ToolBundle bundle = new ToolBundle("SysInternals", "0.0.0.1")
+            ToolBundle serializedBundle = new ToolBundle("SysInternals", "0.0.0.1")
             {
                 Description = "SysInternals Bundle"
             };
@@ -167,13 +167,56 @@ namespace DefragEngineTests
             debugging.Tools.Add(procDump);
             monitoring.Tools.Add(procExp);
 
-            bundle.Categories.Add(debugging);
-            bundle.Categories.Add(monitoring);
-            Assert.AreEqual(bundle.Categories.Count, 2);
+            serializedBundle.Categories.Add(debugging);
+            serializedBundle.Categories.Add(monitoring);
+            Assert.AreEqual(serializedBundle.Categories.Count, 2);
 
-            var xml = bundle.ToXML();
+            var xml = serializedBundle.ToXML();
 
             Assert.IsNotNull(xml);
+
+            var deserializedBundle = ToolBundle.Parse(xml);
+
+            Assert.AreEqual(serializedBundle.ID, deserializedBundle.ID);
+            Assert.AreEqual(serializedBundle.Name, deserializedBundle.Name);
+            Assert.AreEqual(serializedBundle.Version, deserializedBundle.Version);
+            Assert.AreEqual(serializedBundle.Description, deserializedBundle.Description);
+
+            foreach (var category in serializedBundle.Categories.Values)
+            {
+                var deserializedCategory = deserializedBundle.Categories[category.Name].First();
+
+                Assert.AreEqual(deserializedCategory.ID,            category.ID);
+                Assert.AreEqual(deserializedCategory.Name,          category.Name);
+                Assert.AreEqual(deserializedCategory.Version,       category.Version);
+                Assert.AreEqual(deserializedCategory.Description,   category.Description);
+
+                foreach (var tool in category.Tools.Values)
+                {
+                    var deserializedTool = deserializedCategory.Tools[tool.Name].First();
+
+                    Assert.AreEqual(deserializedTool.ID, tool.ID);
+                    Assert.AreEqual(deserializedTool.Name, tool.Name);
+                    Assert.AreEqual(deserializedTool.Version, tool.Version);
+                    Assert.AreEqual(deserializedTool.Description, tool.Description);
+                    Assert.AreEqual(deserializedTool.CanUpdate, tool.CanUpdate);
+                    if (tool.CanUpdate)
+                    {
+                        Assert.AreEqual(deserializedTool.UpdateURL, tool.UpdateURL); 
+                    }
+                    Assert.AreEqual(deserializedTool.CommandLine, tool.CommandLine);
+                    Assert.AreEqual(deserializedTool.IsPortable, tool.IsPortable);
+
+                    foreach (var prop in tool.Properties)
+                    {
+                        string deserializedValue = null;
+                        Assert.IsTrue(deserializedTool.Properties.TryGetValue(prop.Key, out deserializedValue));
+                        Assert.AreEqual(deserializedValue, prop.Value);
+                    }
+
+
+                }
+            }
         }
     }
 }

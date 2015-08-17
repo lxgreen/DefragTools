@@ -69,7 +69,7 @@ namespace DefragEngine
 
             if (xDoc == null) { return result; } 
 
-            var bundle = from element in xDoc.Root.Elements() where element.Name == "Bundle" select element;
+            var bundle = xDoc.Root;
 
             if(bundle == null) { return result; }
 
@@ -155,6 +155,8 @@ namespace DefragEngine
 
                         tool.Properties.Add(propName, propValue);
                     }
+
+                    category.Tools.Add(tool);
                 }
 
                 result.Categories.Add(category);
