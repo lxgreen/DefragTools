@@ -148,13 +148,13 @@ namespace DefragEngineTests
                 Description = "Monitoring Tools from SysInternals.Com"
             };
 
-            Tool procDump = new Tool("ProcDump", "0.0.0.1")
+            Tool procDump = new Tool("ProcDump", "0.0.0.1", @"d:\sysinternals\procdump.exe -n 10 -cpu 90")
             {
                 Description = "Automatic Dump capture",
                 IsPortable = true
             };
 
-            Tool procExp = new Tool("ProcExp", "0.0.0.1")
+            Tool procExp = new Tool("ProcExp", "0.0.0.1", @"d:\sysinternals\procexp.exe")
             {
                 Description = "Process Explorer -- TaskMgr on steroids!",
                 UpdateURL = "http://sysinternals.com",

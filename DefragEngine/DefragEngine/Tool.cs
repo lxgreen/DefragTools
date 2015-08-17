@@ -24,8 +24,9 @@ namespace DefragEngine
             }
         }
 
-        public Tool(string name, string version) : base(name, version)
+        public Tool(string name, string version, string commandLine) : base(name, version)
         {
+            CommandLine = commandLine;
         }
 
         internal Tool()

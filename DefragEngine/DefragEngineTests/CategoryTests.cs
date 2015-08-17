@@ -73,8 +73,8 @@ namespace DefragEngineTests
         {
             ToolCategory category = new ToolCategory("SysInternals", "0.0.0.1");
             Assert.AreEqual(category.Tools.Count, 0);
-            Tool procDump = new Tool("ProcDump", "0.0.0.1");
-            Tool procExp = new Tool("ProcExp", "0.0.0.1");
+            Tool procDump = new Tool("ProcDump", "0.0.0.1", @"d:\sysinternals\procdump.exe -n 10 -cpu 90");
+            Tool procExp = new Tool("ProcExp", "0.0.0.1", @"d:\sysinternals\procexp.exe");
             category.Tools.Add(procDump);
             Assert.AreEqual(category.Tools.Count, 1);
             category.Tools.Add(procExp);
@@ -84,8 +84,8 @@ namespace DefragEngineTests
         [TestMethod]
         public void CategoryToolsAddRangeTest()
         {
-            Tool procDump = new Tool("ProcDump", "0.0.0.1");
-            Tool procExp = new Tool("ProcExp", "0.0.0.1");
+            Tool procDump = new Tool("ProcDump", "0.0.0.1", @"d:\sysinternals\procdump.exe -n 10 -cpu 90");
+            Tool procExp = new Tool("ProcExp", "0.0.0.1", @"d:\sysinternals\procexp.exe");
             ToolCategory category = new ToolCategory("SysInternals", "0.0.0.1");
             Assert.AreEqual(category.Tools.Count, 0);
             category.Tools.Add(procDump, procExp);
@@ -95,8 +95,8 @@ namespace DefragEngineTests
         [TestMethod]
         public void CategoryToolsRemoveTest()
         {
-            Tool procDump = new Tool("ProcDump", "0.0.0.1");
-            Tool procExp = new Tool("ProcExp", "0.0.0.1");
+            Tool procDump = new Tool("ProcDump", "0.0.0.1", @"d:\sysinternals\procdump.exe -n 10 -cpu 90");
+            Tool procExp = new Tool("ProcExp", "0.0.0.1", @"d:\sysinternals\procexp.exe");
             ToolCategory category = new ToolCategory("SysInternals", "0.0.0.1");
             category.Tools.Add(procDump, procExp);
 
@@ -112,8 +112,8 @@ namespace DefragEngineTests
         [TestMethod]
         public void CategoryToolsIndexerTest()
         {
-            Tool procDump = new Tool("ProcDump", "0.0.0.1");
-            Tool procExp = new Tool("ProcExp", "0.0.0.1");
+            Tool procDump = new Tool("ProcDump", "0.0.0.1", @"d:\sysinternals\procdump.exe -n 10 -cpu 90");
+            Tool procExp = new Tool("ProcExp", "0.0.0.1", @"d:\sysinternals\procexp.exe");
             ToolCategory category = new ToolCategory("SysInternals", "0.0.0.1");
             category.Tools.Add(procDump, procExp);
 
