@@ -59,10 +59,11 @@ namespace DefragEngineTests
         [TestMethod]
         public void BundleInstanceTest()
         {
-            ToolBundle bundle = new ToolBundle("TestBundle");
+            ToolBundle bundle = new ToolBundle("TestBundle", "0.0.0.1");
             Assert.IsNotNull(bundle);
             Assert.AreNotEqual(bundle.ID, Guid.Empty);
             Assert.AreEqual(bundle.Name, "TestBundle");
+            Assert.AreEqual(bundle.Version, "0.0.0.1");
             Assert.IsNotNull(bundle.Categories);
             Assert.AreEqual(bundle.Categories.Count, 0);
         }
@@ -70,12 +71,12 @@ namespace DefragEngineTests
         [TestMethod]
         public void BundleCategoriesAddTest()
         {
-            ToolBundle bundle = new ToolBundle("TestBundle");
+            ToolBundle bundle = new ToolBundle("TestBundle", "0.0.0.1");
             Assert.AreEqual(bundle.Categories.Count, 0);
-            var testCategory = new ToolCategory("Test");
+            var testCategory = new ToolCategory("Test", "0.0.0.1");
             bundle.Categories.Add(testCategory);
             Assert.AreEqual(bundle.Categories.Count, 1);
-            var categoryToAdd = new ToolCategory("Test2");
+            var categoryToAdd = new ToolCategory("Test2", "0.0.0.1");
             bundle.Categories.Add(categoryToAdd);
             Assert.AreEqual(bundle.Categories.Count, 2);
         }
@@ -83,9 +84,9 @@ namespace DefragEngineTests
         [TestMethod]
         public void BundleCategoriesAddRangeTest()
         {
-            var testCategory = new ToolCategory("Test");
-            var categoryToAdd = new ToolCategory("Test2");
-            ToolBundle bundle = new ToolBundle("TestBundle");
+            var testCategory = new ToolCategory("Test", "0.0.0.1");
+            var categoryToAdd = new ToolCategory("Test2", "0.0.0.1");
+            ToolBundle bundle = new ToolBundle("TestBundle", "0.0.0.1");
             Assert.AreEqual(bundle.Categories.Count, 0);
             bundle.Categories.Add(categoryToAdd, testCategory);
             Assert.AreEqual(bundle.Categories.Count, 2);
@@ -94,9 +95,9 @@ namespace DefragEngineTests
         [TestMethod]
         public void BundleCategoriesRemoveTest()
         {
-            var testCategory = new ToolCategory("Test");
-            var categoryToAdd = new ToolCategory("Test2");
-            ToolBundle bundle = new ToolBundle("TestBundle");
+            var testCategory = new ToolCategory("Test", "0.0.0.1");
+            var categoryToAdd = new ToolCategory("Test2", "0.0.0.1");
+            ToolBundle bundle = new ToolBundle("TestBundle", "0.0.0.1");
             bundle.Categories.Add(categoryToAdd, testCategory);
             Assert.AreEqual(bundle.Categories.Count, 2);
 
@@ -112,9 +113,9 @@ namespace DefragEngineTests
         [TestMethod]
         public void BundleCategoriesIndexerTest()
         {
-            var testCategory = new ToolCategory("Test");
-            var categoryToAdd = new ToolCategory("Test2");
-            ToolBundle bundle = new ToolBundle("TestBundle");
+            var testCategory = new ToolCategory("Test", "0.0.0.0");
+            var categoryToAdd = new ToolCategory("Test2", "0.0.0.0");
+            ToolBundle bundle = new ToolBundle("TestBundle", "0.0.0.0");
             bundle.Categories.Add(categoryToAdd, testCategory);
             Assert.AreEqual(bundle.Categories.Count, 2);
 
@@ -132,34 +133,29 @@ namespace DefragEngineTests
         [TestMethod]
         public void BundleSerializationTest()
         {
-            ToolBundle bundle = new ToolBundle("SysInternals")
+            ToolBundle bundle = new ToolBundle("SysInternals", "0.0.0.1")
             {
-                Version = "0.0.0.1",
                 Description = "SysInternals Bundle"
             };
 
-            var debugging = new ToolCategory("Debugging")
+            var debugging = new ToolCategory("Debugging", "0.0.0.1")
             {
-                Version = "0.0.0.1",
                 Description = "Debugging Tools from SysInternals.Com"
             };
 
-            var monitoring = new ToolCategory("Monitoring")
+            var monitoring = new ToolCategory("Monitoring", "0.0.0.1")
             {
-                Version = "0.0.0.2",
                 Description = "Monitoring Tools from SysInternals.Com"
             };
 
-            Tool procDump = new Tool("ProcDump")
+            Tool procDump = new Tool("ProcDump", "0.0.0.1")
             {
-                Version = "7.0.0.1",
                 Description = "Automatic Dump capture",
                 IsPortable = true
             };
 
-            Tool procExp = new Tool("ProcExp")
+            Tool procExp = new Tool("ProcExp", "0.0.0.1")
             {
-                Version = "7.0.0.3",
                 Description = "Process Explorer -- TaskMgr on steroids!",
                 UpdateURL = "http://sysinternals.com",
                 CanUpdate = true

@@ -1,4 +1,6 @@
-﻿namespace DefragEngine
+﻿using System;
+
+namespace DefragEngine
 {
     public class ToolCategory : DefragEngineBaseUnit
     {
@@ -12,7 +14,15 @@
             }
         }
 
-        public ToolCategory(string name) : base(name)
+        public ToolCategory(string name, string version) : base(name, version)
+        {
+        }
+
+        internal ToolCategory(string name, string version, Guid id) : base(name, version, id)
+        {
+        }
+
+        internal ToolCategory()
         {
         }
     }

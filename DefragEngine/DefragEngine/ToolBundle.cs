@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace DefragEngine
@@ -15,7 +16,16 @@ namespace DefragEngine
             }
         }
 
-        public ToolBundle(string name) : base(name)
+        public ToolBundle(string name, string version) : base(name, version)
+        {
+        }
+
+        internal ToolBundle(string name, string version, Guid id) : base(name, version, id)
+        {
+
+        }
+
+        internal ToolBundle()
         {
         }
 
@@ -49,5 +59,109 @@ namespace DefragEngine
 
             return xml.ToString();
         }
+
+        // TODO: refactoring
+        public static ToolBundle Parse(string xml)
+        {
+            ToolBundle result = null;
+
+            var xDoc = XDocument.Parse(xml);
+
+            if (xDoc == null) { return result; } 
+
+            var bundle = from element in xDoc.Root.Elements() where element.Name == "Bundle" select element;
+
+            if(bundle == null) { return result; }
+
+            var attributes = bundle.Attributes();
+
+            var id = (from attr in attributes where attr.Name == "ID" select attr.Value).FirstOrDefault();
+            var name = (from attr in attributes where attr.Name == "Name" select attr.Value).FirstOrDefault();
+            var version = (from attr in attributes where attr.Name == "Version" select attr.Value).FirstOrDefault();
+
+            if(string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(version)) { return result; }
+
+            var description = (from element in bundle.Descendants() where element.Name == "Description" select element.Value).FirstOrDefault();
+
+            result = new ToolBundle
+            {
+                ID = Guid.Parse(id),
+                Name = name,
+                Version = version,
+                Description = description
+            };
+
+            var categories = from element in bundle.Descendants() where element.Name == "Category" select element;
+
+            foreach (var categoryElement in categories)
+            {
+                attributes = categoryElement.Attributes();
+
+                id = (from attr in attributes where attr.Name == "ID" select attr.Value).FirstOrDefault();
+                name = (from attr in attributes where attr.Name == "Name" select attr.Value).FirstOrDefault();
+                version = (from attr in attributes where attr.Name == "Version" select attr.Value).FirstOrDefault();
+
+                if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(version)) { continue; }
+
+                description = (from element in categoryElement.Descendants() where element.Name == "Description" select element.Value).FirstOrDefault();
+
+                var category = new ToolCategory
+                {
+                    ID = Guid.Parse(id),
+                    Name = name,
+                    Version = version,
+                    Description = description
+                };
+
+                var tools = from element in categoryElement.Descendants() where element.Name == "Tool" select element;
+
+
+                foreach (var toolElement in tools)
+                {
+                    attributes = toolElement.Attributes();
+
+                    id = (from attr in attributes where attr.Name == "ID" select attr.Value).FirstOrDefault();
+                    name = (from attr in attributes where attr.Name == "Name" select attr.Value).FirstOrDefault();
+                    version = (from attr in attributes where attr.Name == "Version" select attr.Value).FirstOrDefault();
+
+                    if (string.IsNullOrEmpty(id) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(version)) { continue; }
+
+                    description = (from element in toolElement.Descendants() where element.Name == "Description" select element.Value).FirstOrDefault();
+                    var isPortable = (from attr in attributes where attr.Name == "Portable" select attr.Value).FirstOrDefault();
+                    var commandLine = (from element in toolElement.Descendants() where element.Name == "CommandLine" select element.Value).FirstOrDefault();
+                    var updateURL = (from element in toolElement.Descendants() where element.Name == "UpdateURL" select element.Value).FirstOrDefault();
+
+                    var tool = new Tool
+                    {
+                        ID = Guid.Parse(id),
+                        Name = name,
+                        Version = version,
+                        Description = description,
+                        CommandLine = commandLine,
+                        UpdateURL = updateURL,
+                        CanUpdate = !string.IsNullOrEmpty(updateURL) && updateURL != "N/A",
+                        IsPortable = bool.Parse(isPortable)
+                    };
+
+                    var properties = from element in toolElement.Descendants() where element.Name == "Property" select element;
+
+                    foreach (var prop in properties)
+                    {
+                        attributes = prop.Attributes();
+                        var propName = (from attr in attributes where attr.Name == "Name" select attr.Value).FirstOrDefault();
+                        var propValue = (from attr in attributes where attr.Name == "Value" select attr.Value).FirstOrDefault();
+
+                        if (string.IsNullOrEmpty(propName) || string.IsNullOrEmpty(propValue)) { continue; }
+
+                        tool.Properties.Add(propName, propValue);
+                    }
+                }
+
+                result.Categories.Add(category);
+            }
+
+            return result;
+        }
+        
     }
 }
