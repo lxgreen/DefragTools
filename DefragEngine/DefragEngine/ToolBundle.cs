@@ -8,13 +8,7 @@ namespace DefragEngine
     {
         private CategoryCollection _categories;
 
-        public CategoryCollection Categories
-        {
-            get
-            {
-                return _categories ?? (_categories = new CategoryCollection());
-            }
-        }
+        public CategoryCollection Categories => _categories ?? (_categories = new CategoryCollection());
 
         public ToolBundle(string name, string version) : base(name, version)
         {

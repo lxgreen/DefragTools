@@ -8,13 +8,7 @@ namespace DefragEngine
     {
         private ToolCollection _tools;
 
-        public ToolCollection Tools
-        {
-            get
-            {
-                return _tools ?? (_tools = new ToolCollection());
-            }
-        }
+        public ToolCollection Tools => _tools ?? (_tools = new ToolCollection());
 
         public ToolCategory(string name, string version) : base(name, version)
         {

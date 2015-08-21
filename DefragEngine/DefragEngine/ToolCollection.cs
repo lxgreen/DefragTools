@@ -10,14 +10,6 @@ namespace DefragEngine
             AddRange(tools);
         }
 
-        public IEnumerable<Tool> this[string name]
-        {
-            get
-            {
-                return from tool in this
-                       where tool.Name == name
-                       select tool;
-            }
-        }
+        public IEnumerable<Tool> this[string name] => from tool in this where tool.Name == name select tool;
     }
 }

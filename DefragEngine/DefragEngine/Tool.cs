@@ -18,13 +18,7 @@ namespace DefragEngine
 
         public bool IsPortable { get; set; }
 
-        public PropertyCollection Properties
-        {
-            get
-            {
-                return _properties ?? (_properties = new PropertyCollection());
-            }
-        }
+        public PropertyCollection Properties => _properties ?? (_properties = new PropertyCollection());
 
         public Tool(string name, string version, string commandLine) : base(name, version)
         {
