@@ -50,8 +50,13 @@ namespace DefragEngine
             return parseOK;
         }
 
-        public virtual string ToXML()
+        public virtual XElement ToXML(string name)
         {
+            return new XElement(name,
+                    new XAttribute("ID", ID),
+                    new XAttribute("Name", Name),
+                    new XAttribute("Version", Version),
+                    new XElement("Description", Description));
         }
     }
 }

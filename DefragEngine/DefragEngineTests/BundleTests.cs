@@ -171,7 +171,7 @@ namespace DefragEngineTests
             serializedBundle.Categories.Add(monitoring);
             Assert.AreEqual(serializedBundle.Categories.Count, 2);
 
-            var xml = serializedBundle.ToXMLOld();
+            var xml = serializedBundle.ToString();
 
             Assert.IsNotNull(xml);
 
@@ -186,10 +186,10 @@ namespace DefragEngineTests
             {
                 var deserializedCategory = deserializedBundle.Categories[category.Name].First();
 
-                Assert.AreEqual(deserializedCategory.ID,            category.ID);
-                Assert.AreEqual(deserializedCategory.Name,          category.Name);
-                Assert.AreEqual(deserializedCategory.Version,       category.Version);
-                Assert.AreEqual(deserializedCategory.Description,   category.Description);
+                Assert.AreEqual(deserializedCategory.ID, category.ID);
+                Assert.AreEqual(deserializedCategory.Name, category.Name);
+                Assert.AreEqual(deserializedCategory.Version, category.Version);
+                Assert.AreEqual(deserializedCategory.Description, category.Description);
 
                 foreach (var tool in category.Tools)
                 {
@@ -202,7 +202,7 @@ namespace DefragEngineTests
                     Assert.AreEqual(deserializedTool.CanUpdate, tool.CanUpdate);
                     if (tool.CanUpdate)
                     {
-                        Assert.AreEqual(deserializedTool.UpdateURL, tool.UpdateURL); 
+                        Assert.AreEqual(deserializedTool.UpdateURL, tool.UpdateURL);
                     }
                     Assert.AreEqual(deserializedTool.CommandLine, tool.CommandLine);
                     Assert.AreEqual(deserializedTool.IsPortable, tool.IsPortable);
@@ -213,8 +213,6 @@ namespace DefragEngineTests
                         Assert.IsTrue(deserializedTool.Properties.TryGetValue(prop.Key, out deserializedValue));
                         Assert.AreEqual(deserializedValue, prop.Value);
                     }
-
-
                 }
             }
         }

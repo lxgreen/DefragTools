@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace DefragEngine
 {
     public class ToolCollection : List<Tool>
-    {       
+    {
         public void Add(params Tool[] tools)
         {
             AddRange(tools);

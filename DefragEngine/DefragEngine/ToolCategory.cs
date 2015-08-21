@@ -51,9 +51,11 @@ namespace DefragEngine
             return parseOK;
         }
 
-        public override string ToXML()
+        public override XElement ToXML(string name)
         {
-            throw new NotImplementedException();
+            var categoryElement = base.ToXML(name);
+            categoryElement.Add(new XElement("Tools", from tool in Tools select tool.ToXML("Tool")));
+            return categoryElement;
         }
     }
 }
