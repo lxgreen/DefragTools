@@ -171,7 +171,7 @@ namespace DefragEngineTests
             serializedBundle.Categories.Add(monitoring);
             Assert.AreEqual(serializedBundle.Categories.Count, 2);
 
-            var xml = serializedBundle.ToXML();
+            var xml = serializedBundle.ToXMLOld();
 
             Assert.IsNotNull(xml);
 

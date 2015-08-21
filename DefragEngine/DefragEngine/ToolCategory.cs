@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace DefragEngine
 {
@@ -24,6 +26,34 @@ namespace DefragEngine
 
         internal ToolCategory()
         {
+        }
+
+        public override bool Parse(XElement xmlElement)
+        {
+            bool parseOK = false;
+
+            if (base.Parse(xmlElement))
+            {
+                var tools = from element in xmlElement.Descendants() where element.Name == "Tool" select element;
+
+                foreach (var toolElement in tools)
+                {
+                    var tool = new Tool();
+
+                    if (tool.Parse(toolElement))
+                    {
+                        Tools.Add(tool);
+                    }
+                }
+
+                parseOK = true;
+            }
+            return parseOK;
+        }
+
+        public override string ToXML()
+        {
+            throw new NotImplementedException();
         }
     }
 }
