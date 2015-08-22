@@ -14,7 +14,7 @@ namespace DefragEngine
         {
         }
 
-        internal ToolCategory(string name, string version, Guid id) : base(name, version, id)
+        internal ToolCategory(string name, string version, string id) : base(name, version, id)
         {
         }
 

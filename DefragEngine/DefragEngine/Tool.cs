@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -20,17 +20,41 @@ namespace DefragEngine
 
         public PropertyCollection Properties => _properties ?? (_properties = new PropertyCollection());
 
-        public Tool(string name, string version, string commandLine) : base(name, version)
+        public Tool(string name, string version, string commandLine)
         {
+            Name = name;
+            Version = version;
             CommandLine = commandLine;
+            ID = GenerateID();   // id = f(file contents)
         }
 
         internal Tool()
         {
         }
 
-        internal Tool(string name, string version, Guid id) : base(name, version, id)
+        internal Tool(string name, string version, string commandLine, string id) : base(name, version, id)
         {
+            CommandLine = commandLine;
+        }
+
+        protected override string GenerateID()
+        {
+            string id = string.Empty;
+
+            if (string.IsNullOrEmpty(CommandLine) || !File.Exists(Path.GetFullPath(CommandLine)))
+            {
+                id = base.GenerateID();
+            }
+            else
+            {
+                using (var stream = File.OpenRead(Path.GetFullPath(CommandLine)))
+                {
+                    var hash = new Hash(stream);
+                    id = hash.ToString();
+                }
+            }
+
+            return id;
         }
 
         public override bool Parse(XElement xmlElement)
