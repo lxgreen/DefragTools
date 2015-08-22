@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Shell32;
 
 namespace DefragEngine
@@ -75,7 +74,5 @@ namespace DefragEngine
 
             return headers;
         }
-
-        
     }
 }

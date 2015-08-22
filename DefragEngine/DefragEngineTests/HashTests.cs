@@ -10,23 +10,24 @@ namespace DefragEngineTests
         [TestMethod]
         public void HashInstanceTest()
         {
-            // var emptyHash = new Hash();                      // should fail -- no hash without input data allowed
+            // var emptyHash = new Hash();                                      // should fail -- no hash without input data allowed
 
-            var stringHash = new Hash("test");                  // should hold md5 of "test" string
+            var stringHash = new Hash("test");                                  // should hold md5 of "test" string
 
-            byte[] testHashValue = stringHash.Value;               // should return byte[] value
+            byte[] testHashValue = stringHash.Value;                            // should return byte[] value
             Assert.AreEqual(testHashValue.Length, 16);
 
-            string testHashString = stringHash.ToString();         // should return string representing value
+            string testHashString = stringHash.ToString();                      // should return string representing value
             Assert.AreEqual(testHashString, "c8059e2ec7419f590e79d7f1b774bfe6");
 
-            stringHash = new byte[] { 0xde, 0xad, 0xbe, 0xb0 };     // stringHash now holds this byte[]
+            stringHash = new byte[] { 0xde, 0xad, 0xbe, 0xb0 };                 // stringHash now holds this byte[]
             Assert.AreEqual(stringHash.ToString(), "deadbeb0");
 
-            stringHash = "deadbeef";                            // stringHash now holds this value
+            stringHash = "deadbeef";                                            // stringHash now holds this value
             Assert.AreEqual(stringHash.ToString(), "deadbeef");
 
-            testHashValue = stringHash.Value;                   // should return { 0xde, 0xad, 0xbe, 0xef }
+            testHashValue = stringHash.Value;                                   // should return { 0xde, 0xad, 0xbe, 0xef }
+            Assert.AreEqual(testHashValue.Length, 4);
         }
 
         [TestMethod]
@@ -42,9 +43,9 @@ namespace DefragEngineTests
 
             Assert.IsNotNull(procDumpChecksum);
             Assert.IsNotNull(procExpChecksum);
-            Assert.AreNotEqual(procDumpChecksum.ToString(), procExpChecksum.ToString());
-            Assert.AreEqual(procDumpChecksum.ToString(), procDumpChecksum2.ToString());
-            Assert.AreEqual(procExpChecksum.ToString(), procExpChecksum2.ToString());
+            Assert.AreNotEqual(procDumpChecksum, procExpChecksum);
+            Assert.AreEqual(procDumpChecksum, procDumpChecksum2);
+            Assert.AreEqual(procExpChecksum, procExpChecksum2);
         }
 
         [TestMethod]
@@ -63,9 +64,9 @@ namespace DefragEngineTests
 
                 Assert.IsNotNull(procDumpChecksum);
                 Assert.IsNotNull(procExpChecksum);
-                Assert.AreNotEqual(procDumpChecksum.ToString(), procExpChecksum.ToString());
-                Assert.AreEqual(procDumpChecksum.ToString(), procDumpChecksum2.ToString());
-                Assert.AreEqual(procExpChecksum.ToString(), procExpChecksum2.ToString());
+                Assert.AreNotEqual(procDumpChecksum, procExpChecksum);
+                Assert.AreEqual(procDumpChecksum, procDumpChecksum2);
+                Assert.AreEqual(procExpChecksum, procExpChecksum2);
             }
         }
     }

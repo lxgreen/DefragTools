@@ -80,7 +80,5 @@ namespace DefragEngineTests
             Assert.IsNotNull(headers);
             Assert.AreNotEqual(headers.Count, 0);
         }
-
-       
     }
 }

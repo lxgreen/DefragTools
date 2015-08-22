@@ -29,7 +29,7 @@ namespace DefragEngine
         }
 
         public Hash(Stream data) : this()
-        {            
+        {
             Value = _md5.ComputeHash(data);
         }
 
@@ -45,7 +45,7 @@ namespace DefragEngine
             var result = new Hash();
             result.Value = hash;
             return result;
-        }       
+        }
 
         public override string ToString()
         {
@@ -64,7 +64,7 @@ namespace DefragEngine
             for (int i = 0; i < hash.Length; i += 2)
             {
                 byte parsed;
-                if(byte.TryParse(string.Format("{0}{1}", hash[i], hash[i+1]), NumberStyles.HexNumber, null, out parsed))
+                if (byte.TryParse(string.Format("{0}{1}", hash[i], hash[i + 1]), NumberStyles.HexNumber, null, out parsed))
                 {
                     result.Add(parsed);
                 }
@@ -73,22 +73,8 @@ namespace DefragEngine
             return result.ToArray();
         }
 
-        //private static string FileMD5(string path)
-        //{
-        //    string result = null;
+        public override bool Equals(object compared) => compared is Hash && (compared as Hash).ToString() == this.ToString();
 
-        //    if (!File.Exists(Path.GetFullPath(path))) { return result; }
-
-        //    using (var md5 = System.Security.Cryptography.MD5.Create())
-        //    {
-        //        using (var stream = File.OpenRead(Path.GetFullPath(path)))
-        //        {
-        //            var hash = md5.ComputeHash(stream);
-        //            result = MD5HashToString(hash);
-        //        }
-        //    }
-
-        //    return result;
-        //}
+        public override int GetHashCode() => base.GetHashCode();
     }
 }

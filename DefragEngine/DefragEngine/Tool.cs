@@ -12,8 +12,6 @@ namespace DefragEngine
 
         public string UpdateURL { get; set; }
 
-        public string FilePath { get; set; }
-
         public string CommandLine { get; set; }
 
         public bool IsPortable { get; set; }
@@ -37,9 +35,9 @@ namespace DefragEngine
             CommandLine = commandLine;
         }
 
-        protected override string GenerateID()
+        protected override Hash GenerateID()
         {
-            string id = string.Empty;
+            Hash id = null;
 
             if (string.IsNullOrEmpty(CommandLine) || !File.Exists(Path.GetFullPath(CommandLine)))
             {
@@ -49,8 +47,7 @@ namespace DefragEngine
             {
                 using (var stream = File.OpenRead(Path.GetFullPath(CommandLine)))
                 {
-                    var hash = new Hash(stream);
-                    id = hash.ToString();
+                    id = new Hash(stream);
                 }
             }
 
