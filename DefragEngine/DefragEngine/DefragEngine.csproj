@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryCollection.cs" />
-    <Compile Include="CommandLine.cs" />
+    <Compile Include="CommandLineParser.cs" />
     <Compile Include="DefragEngineBaseUnit.cs" />
     <Compile Include="DefragEngineUtils.cs" />
     <Compile Include="Hash.cs" />

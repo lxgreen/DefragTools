@@ -68,12 +68,5 @@
       <FileName>Hash.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DefragEngine.CommandLine">
-    <Position X="1.25" Y="2" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
-      <FileName>CommandLine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
